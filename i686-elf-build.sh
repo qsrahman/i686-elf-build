@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Default args
+jobs="${1:-4}"
+
 GCC_VER=15.2.0
 BINUTILS_VER=2.45
 # GDB_VER=15.2
@@ -27,8 +30,8 @@ tar -xvf gcc-$GCC_VER.tar.gz
 mkdir build-binutils
 cd build-binutils
     ../binutils-$BINUTILS_VER/configure --target=$TARGET --prefix="$PREFIX" --disable-multilib --disable-nls --disable-werror
-    make -j$1
-    sudo make -j$1 install
+    make -j$jobs
+    sudo make -j$jobs install
 cd ..
 
 # GCC
@@ -39,18 +42,18 @@ cd ..
 mkdir build-gcc
 cd build-gcc
     ../gcc-$GCC_VER/configure --target=$TARGET --prefix="$PREFIX" --disable-multilib --disable-nls --disable-werror --enable-languages=c,c++ --without-headers --without-isl
-    make -j$1 all-gcc
-    make -j$1 all-target-libgcc
-    sudo make -j$1 install-gcc
-    sudo make -j$1 install-target-libgcc
+    make -j$jobs all-gcc
+    make -j$jobs all-target-libgcc
+    sudo make -j$jobs install-gcc
+    sudo make -j$jobs install-target-libgcc
 cd ..
 
 # GDB
 # mkdir build-gdb
 # cd build-gdb
 #     ../gdb-$GDB_VER/configure --target="$TARGET" --prefix="$PREFIX"
-#     make -j$1
-#     sudo make -j$1 install
+#     make -j$jobs
+#     sudo make -j$jobs install
 # cd ..
 
 cd $HOME
