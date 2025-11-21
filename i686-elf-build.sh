@@ -4,15 +4,17 @@
 jobs="${1:-4}"
 
 GCC_VER=15.2.0
-BINUTILS_VER=2.45
+BINUTILS_VER=2.45.1
 # GDB_VER=15.2
 
 # Exports
-export PREFIX="/opt/i686-elf"
-export TARGET=i686-elf
+#export PREFIX="/opt/i686-elf"
+#export TARGET=i686-elf
+export PREFIX="/opt/x86_64-elf"
+export TARGET=x86_64-elf
 export PATH="$PREFIX/bin:$PATH"
 
-sudo mkdir -p $PREFIX
+#sudo mkdir -p $PREFIX
 
 mkdir -p $HOME/build-i686
 cd $HOME/build-i686
